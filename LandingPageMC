@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Feliz Navidad - Equipo DevOps BancoSol</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+
+<body class="bg-gray-900 text-white flex flex-col items-center justify-center min-h-screen px-6 text-center">
+
+  <h1 class="text-5xl font-bold mb-6">🎄 ¡Feliz Navidad, Equipo DevOps! 🎅</h1>
+
+  <p class="text-lg text-gray-300 max-w-2xl mb-6 leading-relaxed">
+    Gracias por un año lleno de ingenio, automatización, despliegues eficientes  
+    y trabajo en equipo. Cada pipeline, cada commit y cada reto fue una oportunidad  
+    para crecer juntos.  
+    <br><br>
+    Que esta Navidad traiga paz, descanso bien merecido y nuevas energías para  
+    construir un 2025 lleno de éxitos.
+  </p>
+
+  <a href="#" class="mt-4 px-6 py-3 bg-green-600 hover:bg-green-700 rounded-lg text-white text-lg">
+    ✨ Mensaje Especial ✨
+  </a>
+
+  <footer class="mt-12 text-sm text-gray-500">
+    © 2025 BancoSol – Equipo DevOps
+  </footer>
+
+</body>
+</html>
