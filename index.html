@@ -1,61 +1,369 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Feliz Navidad y Próspero Año Nuevo 🎅 - Equipo DevOps BancoSol</title>
-  <script src="https://cdn.tailwindcss.com"></script>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Tarjeta Navideña – Equipo DevOps de BancoSol</title>
+<script src="https://cdn.tailwindcss.com"></script>
+
+<style>
+  /* 🎨 Fondo rojo animado */
+  body {
+    background: linear-gradient(120deg, #4a0d0d, #8b0f0f, #4a0d0d);
+    background-size: 200% 200%;
+    animation: bgMove 10s ease infinite;
+    font-family: "Inter", sans-serif;
+    margin: 0;
+    overflow-x: hidden;
+    color: white;
+  }
+  @keyframes bgMove {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+  }
+
+  /* ❄ Nieve suave (opcional: si no carga, la página igual funciona) */
+  .snow {
+    position: fixed;
+    inset: 0;
+    background: url("https://clipart-library.com/img/1922237.gif");
+    background-size: cover;
+    opacity: 0.18;
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  /* HERO */
+  .hero {
+    padding: 6rem 2rem 8rem 2rem;
+    text-align: center;
+    position: relative;
+    z-index: 1;
+  }
+
+  /* “Medallón” con emoji en lugar de GIF externo */
+  .hero-icon {
+    width: 120px;
+    height: 120px;
+    border-radius: 999px;
+    background: radial-gradient(circle at 30% 20%, #ffffff, #ffd86b);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 56px;
+    margin: 0 auto 1.5rem auto;
+    box-shadow: 0 0 40px rgba(255, 216, 107, 0.7);
+    animation: iconPulse 3s ease-in-out infinite;
+  }
+  @keyframes iconPulse {
+    0% { transform: scale(1); box-shadow: 0 0 20px rgba(255,216,107,0.5); }
+    50% { transform: scale(1.05); box-shadow: 0 0 45px rgba(255,216,107,1); }
+    100% { transform: scale(1); box-shadow: 0 0 20px rgba(255,216,107,0.5); }
+  }
+
+  /* Glow del título principal */
+  .hero-title {
+    animation: glowPulse 3s ease-in-out infinite;
+  }
+  @keyframes glowPulse {
+    0% { text-shadow: 0 0 20px rgba(255,255,255,0.2); }
+    50% { text-shadow: 0 0 45px rgba(255,255,255,0.9); }
+    100% { text-shadow: 0 0 20px rgba(255,255,255,0.2); }
+  }
+
+  /* Tarjetas / bloques */
+  .section-card {
+    background: rgba(255,255,255,0.07);
+    border: 1px solid rgba(255,255,255,0.15);
+    border-radius: 22px;
+    padding: 3rem;
+    backdrop-filter: blur(18px);
+    box-shadow: 0 0 40px rgba(0,0,0,0.25);
+  }
+
+  /* Badges / cintillo */
+  .badge-devops {
+    display: inline-block;
+    padding: 0.4rem 1rem;
+    border-radius: 999px;
+    background: rgba(255,216,107,0.12);
+    border: 1px solid rgba(255,216,107,0.6);
+    color: #ffe9a8;
+    font-size: 0.9rem;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+  }
+
+  /* Scroll reveal */
+  [data-anim] {
+    opacity: 0;
+    transform: translateY(40px);
+    transition: all 1s ease;
+  }
+  [data-anim].visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  /* Botón principal */
+  .btn {
+    background: #ffd86b;
+    color: #000;
+    padding: 14px 32px;
+    border-radius: 12px;
+    font-weight: 600;
+    transition: .3s;
+    box-shadow: 0 0 25px rgba(255, 218, 107, .7);
+  }
+  .btn:hover {
+    transform: translateY(-2px) scale(1.03);
+    background: #ffe7a6;
+  }
+
+  /* Botón de música */
+  #musicBtn {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background: #ffd86b;
+    color: #000;
+    width: 52px;
+    height: 52px;
+    border-radius: 999px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    box-shadow: 0 0 22px rgba(255,216,107,.6);
+    font-size: 24px;
+    z-index: 20;
+  }
+
+  footer {
+    z-index: 1;
+    position: relative;
+  }
+</style>
 </head>
 
-<body class="bg-gradient-to-b from-gray-950 via-gray-900 to-gray-950 text-white flex flex-col items-center justify-center min-h-screen px-6">
+<body>
 
-  <div class="max-w-3xl bg-white/5 backdrop-blur-xl p-12 rounded-3xl shadow-2xl border border-white/10 text-center">
+<div class="snow"></div>
 
-    <h1 class="text-5xl md:text-6xl font-extrabold mb-6 drop-shadow-lg tracking-tight">
-      🎄 Feliz Navidad y Próspero Año Nuevo 🎅 🎆
-    </h1>
-
-    <p class="text-lg md:text-xl text-gray-300 leading-relaxed mb-10">
-      Gracias por un año lleno de innovación, automatización y excelencia técnica.
-      <br><br>
-      Cada pipeline construido, cada despliegue exitoso, cada infraestructura creada como código  
-      y cada incidente resuelto reflejan su compromiso, profesionalismo y capacidad de trabajo en equipo.
-      <br><br>
-      Que estas fiestas traigan paz, alegría, energía renovada y momentos especiales junto a quienes más quieres.  
-      Que el 2026 llegue con nuevos retos, aprendizajes, grandes logros y un equipo aún más fuerte.
-    </p>
-
-    <!-- Logos DevOps -->
-    <div class="mt-10 flex flex-wrap justify-center gap-10 opacity-95">
-
-      <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/terraform/terraform-original.svg"
-           alt="Terraform" class="w-16 h-16" />
-
-      <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/azuredevops/azuredevops-original.svg"
-           alt="Azure DevOps" class="w-16 h-16" />
-
-      <img src="https://upload.wikimedia.org/wikipedia/commons/9/93/Amazon_Web_Services_Logo.svg"
-           alt="AWS" class="w-20 h-20" />
-
-      <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/kubernetes/kubernetes-plain.svg"
-           alt="Kubernetes" class="w-16 h-16" />
-
-      <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/docker/docker-original.svg"
-           alt="Docker" class="w-16 h-16" />
-
-      <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/bash/bash-original.svg"
-           alt="Bash" class="w-16 h-16" />
-
-      <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/linux/linux-original.svg"
-           alt="Linux" class="w-16 h-16" />
-
-    </div>
-
-    <footer class="mt-12 text-sm text-gray-500">
-      BancoSol – Equipo DevOps
-    </footer>
-
+<!-- HERO -->
+<header class="hero">
+  <div class="hero-icon">
+    🎄
   </div>
 
+  <span class="badge-devops mb-4">
+    Equipo DevOps de BancoSol
+  </span>
+
+  <h1 class="hero-title text-4xl md:text-6xl font-extrabold leading-tight mb-4 mt-4">
+    Felices Fiestas<br class="hidden md:block" />
+    y Próspero Año Nuevo
+  </h1>
+
+  <p class="max-w-3xl mx-auto text-lg md:text-xl text-gray-200 leading-relaxed mb-6">
+    A todo el <strong>Equipo DevOps de BancoSol</strong>:
+    gracias por un año lleno de automatización, innovación
+    y excelencia técnica.
+  </p>
+
+  <a href="#mensaje" onclick="playMusic()" class="btn inline-block mt-2">
+    Ver mensaje para el equipo 🎁
+  </a>
+</header>
+
+<!-- TARJETA NAVIDEÑA (la que se exporta a PDF) -->
+<section id="mensaje" class="py-16 px-6 flex justify-center">
+  <div id="tarjetaNavidena" class="section-card max-w-3xl text-center text-white" data-anim>
+    <span class="badge-devops mb-4">
+      Mensaje para el Equipo DevOps de BancoSol
+    </span>
+
+    <h2 class="text-3xl md:text-4xl font-bold mb-6">
+      🎅🎄 ¡Feliz Navidad y Próspero Año Nuevo! 🎆
+    </h2>
+
+    <p class="text-lg md:text-xl text-gray-100 leading-relaxed mb-6">
+      A todo el <strong>Equipo DevOps de BancoSol</strong>, gracias por un año de
+      compromiso, resiliencia y trabajo en equipo. Cada despliegue exitoso,
+      cada pipeline afinado y cada incidente resuelto refleja su
+      profesionalismo y pasión por hacer las cosas bien.
+    </p>
+
+    <p class="text-lg md:text-xl text-gray-100 leading-relaxed mb-6">
+      Que estas fiestas traigan paz, alegría y un merecido descanso junto
+      a quienes más quieren. Que el 2026 llegue con nuevos retos, grandes
+      aprendizajes, crecimiento profesional y un equipo aún más fuerte.
+    </p>
+
+    <p class="mt-6 text-base text-gray-200 italic">
+      Con admiración y gratitud,<br/>
+      <span class="font-semibold">quienes tenemos la suerte de trabajar con ustedes.</span>
+    </p>
+  </div>
+</section>
+
+<!-- SECCIÓN LOGROS -->
+<section class="py-12 px-6">
+  <div class="section-card max-w-4xl mx-auto text-white" data-anim>
+    <h3 class="text-3xl font-bold text-center mb-6">🏆 Logros 2025</h3>
+    <ul class="text-left text-lg text-gray-100 max-w-2xl mx-auto leading-relaxed space-y-2">
+      <li>✔ Modernización y estandarización de pipelines críticos.</li>
+      <li>✔ Optimización de clusters y despliegues sobre Kubernetes on-prem y nube.</li>
+      <li>✔ Mayor resiliencia y observabilidad en servicios clave del banco.</li>
+      <li>✔ Gestión impecable de incidentes y soporte a otras áreas.</li>
+      <li>✔ Cultura DevOps consolidada dentro de BancoSol.</li>
+    </ul>
+  </div>
+</section>
+
+<!-- SECCIÓN METAS -->
+<section class="py-12 px-6">
+  <div class="section-card max-w-4xl mx-auto text-white" data-anim>
+    <h3 class="text-3xl font-bold text-center mb-6">🎯 Metas 2026</h3>
+    <ul class="text-left text-lg text-gray-100 max-w-2xl mx-auto leading-relaxed space-y-2">
+      <li>🚀 Profundizar la automatización y el modelo GitOps.</li>
+      <li>☁ Acelerar la adopción de arquitecturas híbridas y nativas de nube.</li>
+      <li>📦 Hacer los despliegues aún más rápidos, seguros y repetibles.</li>
+      <li>🔐 Integrar DevSecOps en todo el ciclo de vida de las aplicaciones.</li>
+      <li>📊 Llevar la observabilidad a un nuevo nivel con métricas de negocio.</li>
+      <li>🌱 Impulsar el crecimiento profesional continuo de todo el Equipo DevOps de BancoSol.</li>
+    </ul>
+  </div>
+</section>
+
+<!-- TECNOLOGÍAS -->
+<section class="py-16 px-6 text-center" data-anim>
+  <h3 class="text-3xl md:text-4xl font-bold mb-10">
+    🔧 Tecnologías que acompañan al Equipo DevOps de BancoSol
+  </h3>
+
+  <div class="flex flex-wrap justify-center gap-16 opacity-100">
+    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/terraform/terraform-original.svg" class="w-20" alt="Terraform" />
+    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/azuredevops/azuredevops-original.svg" class="w-20" alt="Azure DevOps" />
+    <img src="https://upload.wikimedia.org/wikipedia/commons/9/93/Amazon_Web_Services_Logo.svg" class="w-24" alt="AWS" />
+    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/kubernetes/kubernetes-plain.svg" class="w-20" alt="Kubernetes" />
+    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/docker/docker-original.svg" class="w-20" alt="Docker" />
+    <img src="https://upload.wikimedia.org/wikipedia/commons/4/4b/Bash_Logo_Colored.svg" class="w-20" alt="Bash" />
+    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/linux/linux-original.svg" class="w-20" alt="Linux" />
+  </div>
+</section>
+
+<!-- BOTÓN PDF -->
+<section class="py-16 px-6 text-center" data-anim>
+  <button class="btn" onclick="downloadPDF()">
+    Descargar tarjeta en PDF 🎁
+  </button>
+</section>
+
+<!-- FOOTER -->
+<footer class="text-center text-gray-200 py-10">
+  <p class="text-sm">
+    Tarjeta navideña dedicada al <strong>Equipo DevOps de BancoSol</strong> • 2025
+  </p>
+</footer>
+
+<!-- BOTÓN MÚSICA -->
+<div id="musicBtn" onclick="toggleMusic()">🔊</div>
+
+<!-- AUDIO (requiere clic del usuario para sonar) -->
+<audio
+  id="bgMusic"
+  src="https://cdn.pixabay.com/download/audio/2023/01/15/audio_7b6fa0f7e1.mp3?filename=christmas-snow-133866.mp3"
+  loop
+></audio>
+
+<!-- LIBRERÍAS PDF -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+
+<script>
+  /* Scroll reveal */
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
+      if (entry.isIntersecting) entry.target.classList.add("visible");
+    });
+  });
+  document.querySelectorAll("[data-anim]").forEach((el) => observer.observe(el));
+
+  /* Música */
+  const music = document.getElementById("bgMusic");
+  let musicEnabled = false;
+
+  function playMusic() {
+    if (!musicEnabled) {
+      music.play().catch(() => {});
+      musicEnabled = true;
+      const btn = document.getElementById("musicBtn");
+      if (btn) btn.textContent = "🔊";
+    }
+  }
+
+  function toggleMusic() {
+    const btn = document.getElementById("musicBtn");
+    if (!musicEnabled) {
+      music.play().catch(() => {});
+      musicEnabled = true;
+      if (btn) btn.textContent = "🔊";
+    } else {
+      music.pause();
+      musicEnabled = false;
+      if (btn) btn.textContent = "🔇";
+    }
+  }
+
+  /* PDF con mismos colores que la landing (rojo + dorado, sin logo gráfico) */
+  async function downloadPDF() {
+    const { jsPDF } = window.jspdf;
+
+    const elemento = document.getElementById("tarjetaNavidena");
+    elemento.scrollIntoView();
+    await new Promise((res) => setTimeout(res, 300));
+
+    const canvas = await html2canvas(elemento, {
+      scale: 3,
+      backgroundColor: null,
+      useCORS: true,
+    });
+
+    const imgData = canvas.toDataURL("image/png", 1.0);
+    const pdf = new jsPDF("p", "mm", "a4");
+    const pdfWidth = pdf.internal.pageSize.getWidth();
+    const pdfHeight = pdf.internal.pageSize.getHeight();
+
+    // Fondo rojo elegante
+    pdf.setFillColor(58, 5, 5); // #3a0505 aprox
+    pdf.rect(0, 0, pdfWidth, pdfHeight, "F");
+
+    // Marco dorado
+    pdf.setDrawColor(255, 215, 0);
+    pdf.setLineWidth(3);
+    pdf.rect(8, 8, pdfWidth - 16, pdfHeight - 16);
+
+    // Título pequeño encima de la tarjeta dentro del PDF
+    pdf.setTextColor(255, 255, 255);
+    pdf.setFontSize(14);
+    pdf.text(
+      "Tarjeta navideña para el Equipo DevOps de BancoSol",
+      pdfWidth / 2,
+      18,
+      { align: "center" }
+    );
+
+    // Imagen de la tarjeta
+    const imgWidth = pdfWidth - 30;
+    const imgHeight = (canvas.height * imgWidth) / canvas.width;
+    const startY = 26;
+
+    pdf.addImage(imgData, "PNG", 15, startY, imgWidth, imgHeight);
+
+    pdf.save("TarjetaNavidena_EquipoDevOps.pdf");
+  }
+</script>
 </body>
 </html>
