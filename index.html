@@ -118,7 +118,8 @@ html,body{
 .titulo-navidad{
   display:block;
   margin-top:1.6rem;
-  white-space:nowrap;
+  /* white-space:nowrap; */
+  white-space: normal;
   letter-spacing:1.2px;
   font-family:"Playfair Display",serif;
   text-align:center;
@@ -258,7 +259,7 @@ footer{
           font-size: 2.8em;
           letter-spacing: 0.8px;
           text-align: center;
-          display: inline-flex;
+          flex-wrap: wrap;
           align-items: center;
           gap: 0.45rem; /* separa emojis del texto */
         }
@@ -279,6 +280,99 @@ footer{
             0 0 6px rgba(255, 215, 100, 0.35),
             0 0 12px rgba(255, 200, 90, 0.25);
         }
+
+        /* ======== RESPONSIVE PARA CELULAR Y TABLET ======== */
+          @media (max-width: 768px) {
+            .main-wrapper {
+              padding: 1.2rem 1rem 2rem 1rem;
+            }
+
+            .hero {
+              padding: 3rem 1rem 2rem 1rem;
+            }
+
+            .hero-icon {
+              width: 100px;
+              height: 100px;
+              font-size: 48px;
+            }
+
+            .hero-title {
+              font-size: 2.2rem;
+              line-height: 1.2;
+            }
+
+            .hero p {
+              font-size: 1rem;
+            }
+
+            .badge-devops {
+              font-size: .7rem;
+              padding: .5rem 1.2rem;
+            }
+
+            .section-card {
+              padding: 1.5rem;
+              border-radius: 18px;
+            }
+
+            .titulo-navidad {
+              font-size: 1.8rem !important;
+              white-space: normal;
+            }
+
+            .section-block {
+              padding: 1.5rem;
+            }
+
+            h3 {
+              font-size: 1.5rem !important;
+            }
+
+            ul {
+              font-size: .95rem;
+              padding-left: 1rem;
+            }
+
+            #nameSection h3 {
+              font-size: 1.5rem;
+            }
+
+            #nameInput {
+              font-size: 1rem;
+            }
+
+            .btn {
+              font-size: .95rem;
+              padding: .7rem 1.6rem;
+              width: 100%;
+              max-width: 320px;
+            }
+
+            #musicBtn {
+              width: 48px;
+              height: 48px;
+              font-size: 22px;
+              bottom: 14px;
+              right: 14px;
+            }
+
+            /* Tecnologías */
+            .section-block div.flex {
+              gap: 14px;
+            }
+
+            .section-block img {
+              width: 42px !important;
+            }
+
+            /* Opcional: quitar nieve en móvil */
+            .snow {
+              display: none;
+            }
+
+          }
+
       </style>
 
       <h2 id="tituloNavidad" class="titulo-navidad">
