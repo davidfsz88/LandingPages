@@ -3,367 +3,558 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Tarjeta Navideña – Equipo DevOps de BancoSol</title>
+<title>Tarjeta Navideña – Equipo DevOps del BancoSol</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;900&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
 <script src="https://cdn.tailwindcss.com"></script>
 
 <style>
-  /* 🎨 Fondo rojo animado */
-  body {
-    background: linear-gradient(120deg, #4a0d0d, #8b0f0f, #4a0d0d);
-    background-size: 200% 200%;
-    animation: bgMove 10s ease infinite;
-    font-family: "Inter", sans-serif;
-    margin: 0;
-    overflow-x: hidden;
-    color: white;
-  }
-  @keyframes bgMove {
-    0% { background-position: 0% 50%; }
-    50% { background-position: 100% 50%; }
-    100% { background-position: 0% 50%; }
-  }
+html,body{
+  background:radial-gradient(circle at 50% 10%,#5a0d0d,#2a0202 70%);
+  background-attachment:fixed;
+  font-family:"Inter",sans-serif;
+  color:#fff;
+  margin:0;
+  overflow-x:hidden;
+}
 
-  /* ❄ Nieve suave (opcional: si no carga, la página igual funciona) */
-  .snow {
-    position: fixed;
-    inset: 0;
-    background: url("https://clipart-library.com/img/1922237.gif");
-    background-size: cover;
-    opacity: 0.18;
-    pointer-events: none;
-    z-index: 0;
-  }
+/* Fondo con nieve/fuegos (solo para la landing) */
+.snow{
+  position:fixed;
+  inset:0;
+  background:url("https://raw.githubusercontent.com/juliangarnier/anime/master/examples/snow.gif");
+  background-size:cover;
+  opacity:.22;
+  pointer-events:none;
+  z-index:0;
+}
 
-  /* HERO */
-  .hero {
-    padding: 6rem 2rem 8rem 2rem;
-    text-align: center;
-    position: relative;
-    z-index: 1;
-  }
+.main-wrapper{
+  max-width:1200px;
+  margin:0 auto;
+  padding:2.5rem 1.5rem 4rem 1.5rem;
+  position:relative;
+  z-index:1;
+}
 
-  /* “Medallón” con emoji en lugar de GIF externo */
-  .hero-icon {
-    width: 120px;
-    height: 120px;
-    border-radius: 999px;
-    background: radial-gradient(circle at 30% 20%, #ffffff, #ffd86b);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 56px;
-    margin: 0 auto 1.5rem auto;
-    box-shadow: 0 0 40px rgba(255, 216, 107, 0.7);
-    animation: iconPulse 3s ease-in-out infinite;
-  }
-  @keyframes iconPulse {
-    0% { transform: scale(1); box-shadow: 0 0 20px rgba(255,216,107,0.5); }
-    50% { transform: scale(1.05); box-shadow: 0 0 45px rgba(255,216,107,1); }
-    100% { transform: scale(1); box-shadow: 0 0 20px rgba(255,216,107,0.5); }
-  }
+/* HERO */
+.hero{
+  text-align:center;
+  padding:5rem 1rem 4rem 1rem;
+}
+.hero-icon{
+  width:140px;
+  height:140px;
+  border-radius:999px;
+  background:radial-gradient(circle at 30% 20%,#fff,#ffd86b);
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  font-size:64px;
+  margin:0 auto 1.5rem auto;
+  box-shadow:0 0 50px rgba(255,216,107,.9);
+}
+.hero-title{
+  font-family:"Playfair Display",serif;
+  font-size:clamp(2.8rem,4vw,4rem);
+  font-weight:700;
+  margin-bottom:1rem;
+}
+.hero p{
+  font-size:1.3rem;
+  max-width:800px;
+  margin:0 auto 1.5rem auto;
+  color:#fbecec;
+}
+.badge-devops{
+  padding:.75rem 2rem;
+  border-radius:999px;
+  border:2px solid rgba(255,216,107,.9);
+  background:rgba(255,216,107,.15);
+  font-size:.95rem;
+  letter-spacing:.12em;
+  text-transform:uppercase;
+  display:inline-block;
+  margin-top:0;
+  font-weight:600;
+}
 
-  /* Glow del título principal */
-  .hero-title {
-    animation: glowPulse 3s ease-in-out infinite;
-  }
-  @keyframes glowPulse {
-    0% { text-shadow: 0 0 20px rgba(255,255,255,0.2); }
-    50% { text-shadow: 0 0 45px rgba(255,255,255,0.9); }
-    100% { text-shadow: 0 0 20px rgba(255,255,255,0.2); }
-  }
+/* Tarjeta central */
+.section-card{
+  position:relative;
+  margin-top:3rem;
+  border-radius:26px;
+  padding:3.5rem;
+  background:radial-gradient(circle at top left,rgba(255,255,255,.16),rgba(0,0,0,.6));
+  border:1px solid rgba(255,255,255,.18);
+  box-shadow:0 0 50px rgba(0,0,0,.55);
+  backdrop-filter:blur(18px);
+  overflow:hidden;
+}
+.section-card::before{
+  content:"";
+  position:absolute;
+  inset:-3px;
+  border-radius:inherit;
+  padding:2px;
+  background:
+    radial-gradient(circle at 10% 0,rgba(255,255,255,.6),transparent 55%),
+    radial-gradient(circle at 90% 0,rgba(255,216,107,.9),transparent 60%),
+    radial-gradient(circle at 5% 100,rgba(255,80,80,.8),transparent 55%),
+    radial-gradient(circle at 95% 100,rgba(255,216,107,.9),transparent 60%);
+  -webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);
+  -webkit-mask-composite:xor;
+  mask-composite:exclude;
+  animation:glow 6s ease-in-out infinite alternate;
+}
+@keyframes glow{
+  0%{opacity:.5}
+  50%{opacity:1}
+  100%{opacity:.6}
+}
+.section-card-inner{position:relative;z-index:1}
 
-  /* Tarjetas / bloques */
-  .section-card {
-    background: rgba(255,255,255,0.07);
-    border: 1px solid rgba(255,255,255,0.15);
-    border-radius: 22px;
-    padding: 3rem;
-    backdrop-filter: blur(18px);
-    box-shadow: 0 0 40px rgba(0,0,0,0.25);
-  }
+/* Título navideño */
+.titulo-navidad{
+  display:block;
+  margin-top:1.6rem;
+  white-space:nowrap;
+  letter-spacing:1.2px;
+  font-family:"Playfair Display",serif;
+  text-align:center;
+  margin-bottom:2.4rem !important;
+}
 
-  /* Badges / cintillo */
-  .badge-devops {
-    display: inline-block;
-    padding: 0.4rem 1rem;
-    border-radius: 999px;
-    background: rgba(255,216,107,0.12);
-    border: 1px solid rgba(255,216,107,0.6);
-    color: #ffe9a8;
-    font-size: 0.9rem;
-    letter-spacing: 0.04em;
-    text-transform: uppercase;
-  }
+/* Secciones inferiores */
+.section-block{
+  margin-top:3rem;
+  border-radius:24px;
+  padding:2.5rem;
+  /*background:rgba(0,0,0,.55);*/
+  /*background: linear-gradient(180deg, rgba(255,220,150,0.12), rgba(80,20,20,0.35));*/
+  background:radial-gradient(circle at top left,rgba(255,255,255,.16),rgba(0,0,0,.6));
+  border:1px solid rgba(255,255,255,.18);
+  box-shadow:0 0 40px rgba(0,0,0,.6);
+  backdrop-filter:blur(14px);
+}
 
-  /* Scroll reveal */
-  [data-anim] {
-    opacity: 0;
-    transform: translateY(40px);
-    transition: all 1s ease;
-  }
-  [data-anim].visible {
-    opacity: 1;
-    transform: translateY(0);
-  }
+/* Nombre */
+#nameSection{
+  margin-top:3.5rem;
+  text-align:center;
+}
+#nameSection h3{
+  font-size:2rem;
+  margin-bottom:.5rem;
+}
+#nameInput{
+  background:rgba(255,255,255,.1);
+  border:1px solid rgba(255,255,255,.5);
+  color:#fff;
+  padding:.75rem 1.2rem;
+  border-radius:14px;
+  width:100%;
+  max-width:380px;
+  margin:1rem auto;
+  display:block;
+  font-size:1.1rem;
+  text-align:center;
+}
 
-  /* Botón principal */
-  .btn {
-    background: #ffd86b;
-    color: #000;
-    padding: 14px 32px;
-    border-radius: 12px;
-    font-weight: 600;
-    transition: .3s;
-    box-shadow: 0 0 25px rgba(255, 218, 107, .7);
-  }
-  .btn:hover {
-    transform: translateY(-2px) scale(1.03);
-    background: #ffe7a6;
-  }
+/* Botones */
+.btn{
+  background:linear-gradient(90deg,#ffd86b,#ffcc33);
+  color:#000;
+  padding:.9rem 2.4rem;
+  border-radius:14px;
+  font-weight:700;
+  font-size:1.1rem;
+  box-shadow:0 0 30px rgba(255,218,107,.8);
+  transition:.25s ease;
+  display:inline-block;
+}
+.btn:hover{
+  transform:translateY(-2px) scale(1.03);
+}
 
-  /* Botón de música */
-  #musicBtn {
-    position: fixed;
-    bottom: 20px;
-    right: 20px;
-    background: #ffd86b;
-    color: #000;
-    width: 52px;
-    height: 52px;
-    border-radius: 999px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    cursor: pointer;
-    box-shadow: 0 0 22px rgba(255,216,107,.6);
-    font-size: 24px;
-    z-index: 20;
-  }
+/* Botón audio */
+#musicBtn{
+  position:fixed;
+  bottom:22px;
+  right:22px;
+  width:56px;
+  height:56px;
+  border-radius:999px;
+  background:#ffd86b;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  font-size:26px;
+  color:#000;
+  box-shadow:0 0 30px rgba(255,216,107,.8);
+  cursor:pointer;
+  z-index:50;
+}
 
-  footer {
-    z-index: 1;
-    position: relative;
-  }
+/* Animaciones scroll */
+[data-anim]{opacity:0;transform:translateY(40px);transition:all .9s ease}
+[data-anim].visible{opacity:1;transform:translateY(0)}
+
+.title-pdf-clean {
+  
+  background: none !important;
+  background-clip: initial !important;       /* ← estándar */
+  -webkit-background-clip: initial !important; /* ← WebKit */
+  -webkit-text-fill-color: #ffffff !important;
+  color: #ffffff !important;
+  text-shadow: none !important;
+}
+
+.texto-premium-pdf {
+  background: none !important;
+  background-clip: initial !important;
+  -webkit-background-clip: initial !important;
+  -webkit-text-fill-color: #ffd86b !important; /* dorado plano */
+  color: #ffd86b !important;
+  text-shadow: none !important;
+}
+
+/* Footer */
+footer{
+  text-align:center;
+  padding:2.5rem 1rem 3rem 1rem;
+  color:#f8dcdc;
+  font-size:.95rem;
+}
 </style>
 </head>
-
 <body>
 
 <div class="snow"></div>
 
-<!-- HERO -->
-<header class="hero">
-  <div class="hero-icon">
-    🎄
-  </div>
+<div class="main-wrapper">
 
-  <span class="badge-devops mb-4">
-    Equipo DevOps de BancoSol
-  </span>
-
-  <h1 class="hero-title text-4xl md:text-6xl font-extrabold leading-tight mb-4 mt-4">
-    Felices Fiestas<br class="hidden md:block" />
-    y Próspero Año Nuevo
-  </h1>
-
-  <p class="max-w-3xl mx-auto text-lg md:text-xl text-gray-200 leading-relaxed mb-6">
-    A todo el <strong>Equipo DevOps de BancoSol</strong>:
-    gracias por un año lleno de automatización, innovación
-    y excelencia técnica.
-  </p>
-
-  <a href="#mensaje" onclick="playMusic()" class="btn inline-block mt-2">
-    Ver mensaje para el equipo 🎁
-  </a>
-</header>
-
-<!-- TARJETA NAVIDEÑA (la que se exporta a PDF) -->
-<section id="mensaje" class="py-16 px-6 flex justify-center">
-  <div id="tarjetaNavidena" class="section-card max-w-3xl text-center text-white" data-anim>
-    <span class="badge-devops mb-4">
-      Mensaje para el Equipo DevOps de BancoSol
-    </span>
-
-    <h2 class="text-3xl md:text-4xl font-bold mb-6">
-      🎅🎄 ¡Feliz Navidad y Próspero Año Nuevo! 🎆
-    </h2>
-
-    <p class="text-lg md:text-xl text-gray-100 leading-relaxed mb-6">
-      A todo el <strong>Equipo DevOps de BancoSol</strong>, gracias por un año de
-      compromiso, resiliencia y trabajo en equipo. Cada despliegue exitoso,
-      cada pipeline afinado y cada incidente resuelto refleja su
-      profesionalismo y pasión por hacer las cosas bien.
+  <!-- HERO -->
+  <header class="hero" data-anim>
+    <div class="hero-icon">🎄</div>
+    <span class="badge-devops">Equipo DevOps del BancoSol</span>
+    <h1 class="hero-title">Felices Fiestas<br>y Próspero Año Nuevo</h1>
+    <p>
+      A todo el <strong>Equipo DevOps del BancoSol</strong>:
+      gracias por un año lleno de innovación, automatización y excelencia técnica.
     </p>
+    <a href="#tarjeta" class="btn">Ver mensaje para el equipo 🎁</a>
+  </header>
 
-    <p class="text-lg md:text-xl text-gray-100 leading-relaxed mb-6">
-      Que estas fiestas traigan paz, alegría y un merecido descanso junto
-      a quienes más quieren. Que el 2026 llegue con nuevos retos, grandes
-      aprendizajes, crecimiento profesional y un equipo aún más fuerte.
-    </p>
+  <!-- TARJETA -->
+  <section id="tarjeta" class="section-card" data-anim>
+    <div id="tarjetaContenido" class="section-card-inner text-center">
+      <span class="badge-devops">MENSAJE PARA EL EQUIPO DEVOPS DEL BANCOSOL</span>
+      <style>
+        /* Contenedor */
+        .titulo-navidad {
+          font-family: 'Playfair Display', serif;
+          font-weight: 700;
+          font-size: 2.8em;
+          letter-spacing: 0.8px;
+          text-align: center;
+          display: inline-flex;
+          align-items: center;
+          gap: 0.45rem; /* separa emojis del texto */
+        }
 
-    <p class="mt-6 text-base text-gray-200 italic">
-      Con admiración y gratitud,<br/>
-      <span class="font-semibold">quienes tenemos la suerte de trabajar con ustedes.</span>
-    </p>
-  </div>
-</section>
+        /* Emojis normales (sin dorado) */
+        .titulo-navidad .emoji {
+          font-size: 0.9em; /* tamaño proporcional elegante */
+        }
 
-<!-- SECCIÓN LOGROS -->
-<section class="py-12 px-6">
-  <div class="section-card max-w-4xl mx-auto text-white" data-anim>
-    <h3 class="text-3xl font-bold text-center mb-6">🏆 Logros 2025</h3>
-    <ul class="text-left text-lg text-gray-100 max-w-2xl mx-auto leading-relaxed space-y-2">
-      <li>✔ Modernización y estandarización de pipelines críticos.</li>
-      <li>✔ Optimización de clusters y despliegues sobre Kubernetes on-prem y nube.</li>
-      <li>✔ Mayor resiliencia y observabilidad en servicios clave del banco.</li>
-      <li>✔ Gestión impecable de incidentes y soporte a otras áreas.</li>
-      <li>✔ Cultura DevOps consolidada dentro de BancoSol.</li>
+        /* Texto premium dorado */
+        .titulo-navidad .texto-premium {
+          background: linear-gradient(180deg, #fff7d1 0%, #ffd86b 35%, #e1a53a 90%);
+          -webkit-background-clip: text;
+          background-clip: text;
+          -webkit-text-fill-color: transparent;
+
+          text-shadow:
+            0 0 6px rgba(255, 215, 100, 0.35),
+            0 0 12px rgba(255, 200, 90, 0.25);
+        }
+      </style>
+
+      <h2 id="tituloNavidad" class="titulo-navidad">
+        <span class="emoji">🎄</span>
+        <span class="texto-premium">¡Feliz Navidad y Próspero Año Nuevo!</span>
+        <span class="emoji">🎆</span>
+      </h2>
+
+      <p style="margin-bottom:1.1rem;font-size:1.45rem;">
+        Gracias equipo por su compromiso, resiliencia y dedicación.
+        Cada despliegue, cada pipeline y cada aporte fortaleció a nuestro BancoSol.
+      </p>
+
+      <p style="margin-bottom:1.2rem;font-size:1.45rem;">
+        Que el 2026 nos encuentre unidos, con nuevos retos, grandes logros
+        y un crecimiento profesional aún mayor.
+      </p>
+
+      <p style="font-style:italic;margin-top:2rem;font-size:1.25rem;">
+        Con gratitud por tu entrega y dedicación,<br><strong>los líderes del BancoSol.</strong>
+      </p>
+    </div>
+  </section>
+
+  <!-- LOGROS -->
+  <section class="section-block" data-anim>
+    <h3 class="text-3xl font-bold text-center mb-4">🏆 Logros 2025</h3>
+    <ul class="text-left text-lg md:text-xl text-gray-100 max-w-2xl mx-auto leading-relaxed space-y-2">
+      <li>✔ Cultura DevOps fortalecida.</li>
+      <li>✔ Automatización ampliada en procesos operativos.</li>
+      <li>✔ Modernización de pipelines con GitOps.</li>
+      <li>✔ Optimización de Kubernetes y despliegues.</li>
+      <li>✔ Mejoras en las estrategias de despliegue.</li>
+      <li>✔ Implementación de la IDP Backstage.</li>
+      <li>✔ Mejoras en seguridad integradas al CI/CD.</li>
+      <li>✔ Observabilidad unificada con métricas más precisas.</li>
+      <li>✔ Mayor resiliencia con monitoreo Dynatrace.</li>
+      <li>✔ Atención temprana ante incidentes y plan de standby.</li>
+      <li>✔ Soporte al usuario mejorado con bots n8n.</li>
+      <li>✔ Mayor estabilidad en entornos productivos.</li>
     </ul>
-  </div>
-</section>
+  </section>
 
-<!-- SECCIÓN METAS -->
-<section class="py-12 px-6">
-  <div class="section-card max-w-4xl mx-auto text-white" data-anim>
-    <h3 class="text-3xl font-bold text-center mb-6">🎯 Metas 2026</h3>
-    <ul class="text-left text-lg text-gray-100 max-w-2xl mx-auto leading-relaxed space-y-2">
-      <li>🚀 Profundizar la automatización y el modelo GitOps.</li>
-      <li>☁ Acelerar la adopción de arquitecturas híbridas y nativas de nube.</li>
-      <li>📦 Hacer los despliegues aún más rápidos, seguros y repetibles.</li>
-      <li>🔐 Integrar DevSecOps en todo el ciclo de vida de las aplicaciones.</li>
-      <li>📊 Llevar la observabilidad a un nuevo nivel con métricas de negocio.</li>
-      <li>🌱 Impulsar el crecimiento profesional continuo de todo el Equipo DevOps de BancoSol.</li>
+  <!-- METAS -->
+  <section class="section-block" data-anim>
+    <h3 class="text-3xl font-bold text-center mb-4">🎯 Metas 2026</h3>
+    <ul class="text-left text-lg md:text-xl text-gray-100 max-w-2xl mx-auto leading-relaxed space-y-2">
+      <li>🚀 Profundizar la automatización end-to-end y fortalecer GitOps.</li>
+      <li>📦 Aumentar la velocidad y seguridad en los despliegues.</li>
+      <li>🔐 Madurar las prácticas DevSecOps en todo el pipeline.</li>
+      <li>📊 Potenciar la observabilidad orientada a SLOs del negocio.</li>
+      <li>🌱 Fortalecer el expertise técnico y obtener nuevas certificaciones.</li>
+      <li>☁️ Consolidar capacidades multi-nube con DR y HA.</li>
+      <li>🤖 Integrar soluciones de IA para soporte y operaciones.</li>
+      <li>⚙️ Ampliar flujos automatizados en procesos clave.</li>
+      <li>🔥 Implementar prácticas de Chaos Engineering.</li>
     </ul>
-  </div>
-</section>
+  </section>
 
-<!-- TECNOLOGÍAS -->
-<section class="py-16 px-6 text-center" data-anim>
-  <h3 class="text-3xl md:text-4xl font-bold mb-10">
-    🔧 Tecnologías que acompañan al Equipo DevOps de BancoSol
-  </h3>
+  <!-- TECNOLOGÍAS (ajuste: una sola línea, íconos algo más chicos) -->
+  <section class="section-block text-center" data-anim>
+    <h3 class="text-3xl font-bold mb-8">
+      ⚙️ Tecnologías que acompañan al Equipo DevOps del BancoSol
+    </h3>
+    <div class="flex flex-nowrap justify-center items-center gap-10 overflow-x-auto opacity-100">
+      <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/terraform/terraform-original.svg" class="w-16">
+      <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/azuredevops/azuredevops-original.svg" class="w-16">
+      <img src="https://registry.npmmirror.com/@lobehub/icons-static-png/latest/files/dark/aws-color.png" class="w-20">
+      <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/kubernetes/kubernetes-plain.svg" class="w-16">
+      <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/docker/docker-original.svg" class="w-16">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/4/4b/Bash_Logo_Colored.svg" class="w-16">
+      <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/linux/linux-original.svg" class="w-16">
+    </div>
+  </section>
 
-  <div class="flex flex-wrap justify-center gap-16 opacity-100">
-    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/terraform/terraform-original.svg" class="w-20" alt="Terraform" />
-    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/azuredevops/azuredevops-original.svg" class="w-20" alt="Azure DevOps" />
-    <img src="https://upload.wikimedia.org/wikipedia/commons/9/93/Amazon_Web_Services_Logo.svg" class="w-24" alt="AWS" />
-    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/kubernetes/kubernetes-plain.svg" class="w-20" alt="Kubernetes" />
-    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/docker/docker-original.svg" class="w-20" alt="Docker" />
-    <img src="https://upload.wikimedia.org/wikipedia/commons/4/4b/Bash_Logo_Colored.svg" class="w-20" alt="Bash" />
-    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/linux/linux-original.svg" class="w-20" alt="Linux" />
-  </div>
-</section>
+  <!-- PERSONALIZACIÓN -->
+  <section id="nameSection" data-anim>
+    <h3>Personaliza tu tarjeta 🎁</h3>
+    <p style="color:#fddede;">Escribe tu nombre para generar tu propia tarjeta en PDF.</p>
+    <input type="text" id="nameInput" placeholder="Escribe tu nombre aquí..." />
+    <button class="btn mt-4" onclick="downloadPDF()">Generar PDF con mi nombre 📄</button>
+  </section>
 
-<!-- BOTÓN PDF -->
-<section class="py-16 px-6 text-center" data-anim>
-  <button class="btn" onclick="downloadPDF()">
-    Descargar tarjeta en PDF 🎁
-  </button>
-</section>
+</div>
 
-<!-- FOOTER -->
-<footer class="text-center text-gray-200 py-10">
-  <p class="text-sm">
-    Tarjeta navideña dedicada al <strong>Equipo DevOps de BancoSol</strong> • 2025
-  </p>
-</footer>
+<!-- AUDIO -->
+<!-- <audio id="navidad" preload="auto" autoplay loop muted playsinline> -->
+<audio id="navidad" preload="auto" loop playsinline>
+  <source src="navidad.mp3" type="audio/mp3">
+</audio>
+<div id="musicBtn">🔇</div>
 
-<!-- BOTÓN MÚSICA -->
-<div id="musicBtn" onclick="toggleMusic()">🔊</div>
+<!-- QR oculto para PDF -->
+<div id="qrcode" style="display:none;"></div>
 
-<!-- AUDIO (requiere clic del usuario para sonar) -->
-<audio
-  id="bgMusic"
-  src="https://cdn.pixabay.com/download/audio/2023/01/15/audio_7b6fa0f7e1.mp3?filename=christmas-snow-133866.mp3"
-  loop
-></audio>
-
-<!-- LIBRERÍAS PDF -->
+<!-- LIBRERÍAS -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
 
 <script>
-  /* Scroll reveal */
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach((entry) => {
-      if (entry.isIntersecting) entry.target.classList.add("visible");
-    });
+/* Animación scroll */
+const obs=new IntersectionObserver((entries)=>{
+  entries.forEach(e=>{ if(e.isIntersecting) e.target.classList.add("visible"); });
+});
+document.querySelectorAll("[data-anim]").forEach(el=>obs.observe(el));
+
+/* AUDIO */
+
+/* AUDIO – autoplay con truco mute/unmute */
+const music = document.getElementById("navidad");
+const btnMusic = document.getElementById("musicBtn");
+
+// Intentar autoplay al cargar
+window.addEventListener("load", () => {
+  // empezamos en mute para que el navegador lo permita
+  music.muted = true;
+  music.play().then(() => {
+    // después de un pequeño delay, activamos el sonido
+    setTimeout(() => {
+      music.muted = false;
+      btnMusic.textContent = "🔇";
+    }, 600);
+  }).catch(() => {
+    // si el navegador aún así bloquea, dejamos el botón para que el usuario lo active
+    btnMusic.textContent = "🔊";
   });
-  document.querySelectorAll("[data-anim]").forEach((el) => observer.observe(el));
+});
 
-  /* Música */
-  const music = document.getElementById("bgMusic");
-  let musicEnabled = false;
+// Botón manual
+btnMusic.addEventListener("click", () => {
+  if (music.paused) {
+    music.play().catch(()=>{});
+    music.muted = false;
+    btnMusic.textContent = "🔇";
+  } else {
+    music.pause();
+    btnMusic.textContent = "🔊";
+  }
+});
 
-  function playMusic() {
-    if (!musicEnabled) {
-      music.play().catch(() => {});
-      musicEnabled = true;
-      const btn = document.getElementById("musicBtn");
-      if (btn) btn.textContent = "🔊";
+
+/* QR */
+const qrText="Felices fiestas del Equipo DevOps del BancoSol";
+const qrContainer=document.getElementById("qrcode");
+const qr=new QRCode(qrContainer,{
+  text:qrText,
+  width:200,
+  height:200,
+  correctLevel:QRCode.CorrectLevel.H
+});
+
+/* PDF */
+async function downloadPDF(){
+  const { jsPDF } = window.jspdf;
+  const nombreRaw = document.getElementById("nameInput").value || "Colaborador del BancoSol";
+  const nombre = nombreRaw.trim();
+
+/*   const cardEl = document.getElementById("tarjetaContenido");
+  const canvas = await html2canvas(cardEl,{ scale:3, backgroundColor:null }); */
+
+  const cardEl = document.getElementById("tarjetaContenido");
+
+  /* Quitar dorado del título SOLO para el PDF */
+  /*   const titulo = document.getElementById("tituloNavidad");
+  titulo.classList.add("title-pdf-clean");*/
+  
+  const tituloSpan = document.querySelector(".texto-premium");
+  tituloSpan.classList.add("texto-premium-pdf");
+
+  /* const canvas = await html2canvas(cardEl,{ scale:3, backgroundColor:null }); */
+
+  const canvas = await html2canvas(cardEl,{
+    scale: 4,              // (❗mucho más nítido)
+    backgroundColor: null,
+    useCORS: true
+  });
+
+  const pdf = new jsPDF("p","mm","a4");
+  const W = pdf.internal.pageSize.getWidth();
+  const H = pdf.internal.pageSize.getHeight();
+
+  /* Fondo guindo + marco dorado */
+  pdf.setFillColor(70,10,10);
+  pdf.rect(0,0,W,H,"F");
+
+  pdf.setDrawColor(255,215,0);
+  pdf.setLineWidth(3);
+  pdf.rect(8,8,W-16,H-16);
+
+  /* Título superior tracking */
+  const tituloPDF = "Tarjeta navideña para el Equipo DevOps del BancoSol";
+  /*  pdf.setFont("helvetica", "bold");
+      pdf.setFontSize(18);
+      pdf.setTextColor(255, 255, 255);
+      pdf.text(tituloPDF, W/2, 22, { align: "center" }); */
+
+
+  /* Imagen de la tarjeta centrada */
+  const img = canvas.toDataURL("image/png");
+  const maxW = W - 30;
+  const ratio = canvas.width / canvas.height;
+  const imgW = maxW;
+  const imgH = imgW / ratio;
+  const xImg = (W - imgW)/2;
+  const yImg = 32;
+  pdf.addImage(img,"PNG",xImg,yImg,imgW,imgH);
+
+  const yBase = yImg + imgH + 14;
+
+  /* Texto "Tarjeta personalizada para:" */
+  pdf.setFontSize(14);
+  pdf.setTextColor(255,255,255);
+  pdf.text("Tarjeta personalizada para:",W/2,yBase,{align:"center"});
+
+  /* NOMBRE DORADO BRILLANTE (sin fondo) */
+  const yNombre = yBase + 12;
+  
+  pdf.setFont("helvetica", "bold");
+  pdf.setFontSize(27);
+
+  // Borde blanco (stroke simulado)
+  pdf.setTextColor(255,255,255);
+  for (let dx of [-0.8, 0, 0.8]) {
+    for (let dy of [-0.8, 0, 0.8]) {
+      pdf.text(nombre, W/2 + dx, yNombre + dy, { align:"center" });
     }
   }
 
-  function toggleMusic() {
-    const btn = document.getElementById("musicBtn");
-    if (!musicEnabled) {
-      music.play().catch(() => {});
-      musicEnabled = true;
-      if (btn) btn.textContent = "🔊";
-    } else {
-      music.pause();
-      musicEnabled = false;
-      if (btn) btn.textContent = "🔇";
+  // Relleno dorado
+  pdf.setTextColor(255,215,0);
+  pdf.text(nombre, W/2, yNombre, { align:"center" });
+
+  
+  /*
+  pdf.setFontSize(22);
+  pdf.setTextColor(255,240,180);
+  pdf.text(nombre,W/2+0.5,yNombre+0.5,{align:"center"});
+  // Cuerpo dorado
+  pdf.setTextColor(255,215,0);
+  pdf.text(nombre,W/2,yNombre,{align:"center"}); */
+
+
+
+  /* Firma */
+  pdf.setFontSize(12);
+  pdf.setTextColor(255,255,255);
+  pdf.text("Con aprecio, Equipo DevOps del BancoSol",W/2,yNombre+14,{align:"center"});
+
+  /* QR */
+  let qrImgEl = qrContainer.querySelector("img");
+  if(!qrImgEl){
+    const qrCanvas = qrContainer.querySelector("canvas");
+    if(qrCanvas){
+      qrImgEl = new Image();
+      qrImgEl.src = qrCanvas.toDataURL("image/png");
     }
   }
+    /*   if(qrImgEl && qrImgEl.src){
+        const qrData = qrImgEl.src;
+        const qrSize = 30;
+        const qrX = W - qrSize - 14;
+        const qrY = H - qrSize - 18;
+        pdf.addImage(qrData,"PNG",qrX,qrY,qrSize,qrSize);
+      } */
 
-  /* PDF con mismos colores que la landing (rojo + dorado, sin logo gráfico) */
-  async function downloadPDF() {
-    const { jsPDF } = window.jspdf;
+  pdf.save(`TarjetaNavidad_${nombre||"Colaborador"}.pdf`);
 
-    const elemento = document.getElementById("tarjetaNavidena");
-    elemento.scrollIntoView();
-    await new Promise((res) => setTimeout(res, 300));
+  /* Restaurar degradado dorado para la web */
+  tituloSpan.classList.remove("texto-premium-pdf");
 
-    const canvas = await html2canvas(elemento, {
-      scale: 3,
-      backgroundColor: null,
-      useCORS: true,
-    });
-
-    const imgData = canvas.toDataURL("image/png", 1.0);
-    const pdf = new jsPDF("p", "mm", "a4");
-    const pdfWidth = pdf.internal.pageSize.getWidth();
-    const pdfHeight = pdf.internal.pageSize.getHeight();
-
-    // Fondo rojo elegante
-    pdf.setFillColor(58, 5, 5); // #3a0505 aprox
-    pdf.rect(0, 0, pdfWidth, pdfHeight, "F");
-
-    // Marco dorado
-    pdf.setDrawColor(255, 215, 0);
-    pdf.setLineWidth(3);
-    pdf.rect(8, 8, pdfWidth - 16, pdfHeight - 16);
-
-    // Título pequeño encima de la tarjeta dentro del PDF
-    pdf.setTextColor(255, 255, 255);
-    pdf.setFontSize(14);
-    pdf.text(
-      "Tarjeta navideña para el Equipo DevOps de BancoSol",
-      pdfWidth / 2,
-      18,
-      { align: "center" }
-    );
-
-    // Imagen de la tarjeta
-    const imgWidth = pdfWidth - 30;
-    const imgHeight = (canvas.height * imgWidth) / canvas.width;
-    const startY = 26;
-
-    pdf.addImage(imgData, "PNG", 15, startY, imgWidth, imgHeight);
-
-    pdf.save("TarjetaNavidena_EquipoDevOps.pdf");
-  }
+}
 </script>
+
+<footer>
+  Tarjeta navideña dedicada al <strong>Equipo DevOps del BancoSol</strong> • 2025
+</footer>
 </body>
 </html>
