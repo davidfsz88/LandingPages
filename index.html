@@ -117,7 +117,7 @@ html,body{
 /* Título navideño */
 .titulo-navidad{
   display:block;
-  margin-top:1.6rem;
+  margin-top:4rem;
   /* white-space:nowrap; */
   white-space: normal;
   letter-spacing:1.2px;
@@ -228,6 +228,7 @@ footer{
   font-size:.95rem;
 }
 </style>
+<link href="https://fonts.googleapis.com/css2?family=Alex+Brush&display=swap" rel="stylesheet">
 </head>
 <body>
 
@@ -389,7 +390,7 @@ footer{
 
       </style>
 
-      <h2 id="tituloNavidad" class="titulo-navidad">
+      <h2 id="tituloNavidad" class="titulo-navidad" style="margin-top: 3.2rem;">
         <img src="1f384.svg" class="emoji-img">
         <span class="texto-premium">¡Feliz Navidad y Próspero Año Nuevo!</span>
         <img src="1f386.svg" class="emoji-img">
@@ -575,7 +576,7 @@ async function downloadPDF() {
     });
 
     const logoW = 48;   // ancho mm
-    const logoH = 24;   // alto mm
+    const logoH = 28;   // alto mm
     const logoX = (W - logoW) / 2;
     const logoY = 20;
 
@@ -586,10 +587,10 @@ async function downloadPDF() {
   }
 
   /* === TITULO CORPORATIVO === */
-  pdf.setFont("times", "bold");
-  pdf.setFontSize(32);
-  pdf.setTextColor(255,215,0);
-  pdf.text("¡Feliz Navidad y Próspero Año Nuevo!", W/2, 60, {align:"center"});
+pdf.setFont("times", "bolditalic");
+pdf.setFontSize(30);
+pdf.setTextColor(255,215,0);
+pdf.text("¡Feliz Navidad y Próspero Año Nuevo!", W/2, 70, { align:"center" });
 
   /* === TEXTO PRINCIPAL === */
   pdf.setFont("helvetica", "normal");
@@ -629,19 +630,24 @@ grandes logros y un crecimiento profesional aún mayor.`,
   pdf.setFontSize(14);
   pdf.text("Tarjeta personalizada para:", W/2, y, {align:"center"});
 
-  /* === NOMBRE DORADO PREMIUM === */
+  /* === NOMBRE DORADO PREMIUM (Times Italic) === */
   y += 12;
-  pdf.setFont("helvetica","bold");
-  pdf.setFontSize(28);
 
-  // borde blanco fino
+  pdf.setFont("times", "italic");
+  pdf.setFontSize(34);
+
+  /* Sombra dorada suave */
+  pdf.setTextColor(180,135,20);
+  pdf.text(nombre, W/2 + 0.6, y + 0.6, {align:"center"});
+
+  /* Borde blanco muy fino */
   pdf.setTextColor(255,255,255);
-  pdf.text(nombre, W/2 - 0.5, y, {align:"center"});
-  pdf.text(nombre, W/2 + 0.5, y, {align:"center"});
-  pdf.text(nombre, W/2, y - 0.5, {align:"center"});
-  pdf.text(nombre, W/2, y + 0.5, {align:"center"});
+  pdf.text(nombre, W/2 - 0.3, y, {align:"center"});
+  pdf.text(nombre, W/2 + 0.3, y, {align:"center"});
+  pdf.text(nombre, W/2, y - 0.3, {align:"center"});
+  pdf.text(nombre, W/2, y + 0.3, {align:"center"});
 
-  // relleno dorado
+  /* Relleno dorado principal */
   pdf.setTextColor(255,215,0);
   pdf.text(nombre, W/2, y, {align:"center"});
 
@@ -656,11 +662,24 @@ grandes logros y un crecimiento profesional aún mayor.`,
   pdf.save(`TarjetaNavidad_${nombre}.pdf`);
 }
 
-    
 </script>
 
 <footer>
   Tarjeta navideña dedicada al <strong>Equipo DevOps del BancoSol</strong> • 2025
 </footer>
+
+<h2 id="tituloAnalogue" 
+    style="
+      font-family: 'Alex Brush', cursive;
+      font-style: italic;
+      font-size: 48px;
+      color: #FFD700;
+      position: absolute;
+      top: -9999px;
+      left: -9999px;
+    ">
+  ¡Feliz Navidad y Próspero Año Nuevo!
+</h2>
+
 </body>
 </html>
