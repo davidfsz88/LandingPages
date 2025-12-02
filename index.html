@@ -252,6 +252,7 @@ footer{
     <div id="tarjetaContenido" class="section-card-inner text-center">
       <span class="badge-devops">MENSAJE PARA EL EQUIPO DEVOPS DEL BANCOSOL</span>
       <style>
+
         /* Contenedor */
         .titulo-navidad {
           font-family: 'Playfair Display', serif;
@@ -373,12 +374,25 @@ footer{
 
           }
 
+         /* FIX emojis al generar PDF */
+        .emoji-fix-pdf {
+          vertical-align: -6px !important;
+        }
+
+        .emoji-img {
+          width: 40px;
+          height: 40px;
+          vertical-align: middle;
+          display: inline-block;
+        }
+
+
       </style>
 
       <h2 id="tituloNavidad" class="titulo-navidad">
-        <span class="emoji">🎄</span>
+        <img src="1f384.svg" class="emoji-img">
         <span class="texto-premium">¡Feliz Navidad y Próspero Año Nuevo!</span>
-        <span class="emoji">🎆</span>
+        <img src="1f386.svg" class="emoji-img">
       </h2>
 
       <p style="margin-bottom:1.1rem;font-size:1.45rem;">
@@ -542,14 +556,45 @@ async function downloadPDF(){
   
   const tituloSpan = document.querySelector(".texto-premium");
   tituloSpan.classList.add("texto-premium-pdf");
+  
 
-  /* const canvas = await html2canvas(cardEl,{ scale:3, backgroundColor:null }); */
+  // 🔧 FIX: Forzar ancho grande SOLO para la captura (evita distorsión en celulares)
+  const originalWidth    = cardEl.style.width;
+  const originalMaxWidth = cardEl.style.maxWidth;
 
+  cardEl.style.width = "900px";
+  cardEl.style.maxWidth = "900px";
+  await new Promise(r => setTimeout(r, 60)); // dejar que el navegador reacomode
+
+  // 🔥 OCULTAR EMOJIS SOLO PARA EL PDF
+  document.querySelectorAll(".emoji-img").forEach(e => {
+    e.style.display = "none";
+  });
+
+  // Captura de la tarjeta SIN distorsión
   const canvas = await html2canvas(cardEl,{
-    scale: 4,              // (❗mucho más nítido)
+    scale: 4,
     backgroundColor: null,
     useCORS: true
   });
+
+  // ✔ Restaurar tamaños originales
+  cardEl.style.width = originalWidth;
+  cardEl.style.maxWidth = originalMaxWidth;
+
+  // ✔ RESTAURAR EMOJIS DESPUÉS DEL PDF
+  document.querySelectorAll(".emoji-img").forEach(e => {
+    e.style.display = "";
+  });
+
+
+/*   const canvas = await html2canvas(cardEl,{
+    scale: 4,
+    backgroundColor: null,
+    useCORS: true
+  });
+ */
+
 
   const pdf = new jsPDF("p","mm","a4");
   const W = pdf.internal.pageSize.getWidth();
