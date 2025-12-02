@@ -406,8 +406,13 @@ footer{
       </p>
 
       <p style="font-style:italic;margin-top:2rem;font-size:1.25rem;">
-        Con gratitud por tu entrega y dedicación,<br><strong>los líderes del BancoSol.</strong>
+        Con gratitud por tu entrega y dedicación,
       </p>
+
+      <p style="font-style:italic;font-size:1.25rem;">
+        <strong>los líderes del BancoSol.</strong>
+      </p>
+
     </div>
   </section>
 
@@ -539,157 +544,119 @@ const qr=new QRCode(qrContainer,{
   correctLevel:QRCode.CorrectLevel.H
 });
 
-/* PDF */
-async function downloadPDF(){
+async function downloadPDF() {
+
   const { jsPDF } = window.jspdf;
+  
   const nombreRaw = document.getElementById("nameInput").value || "Colaborador del BancoSol";
   const nombre = nombreRaw.trim();
-
-/*   const cardEl = document.getElementById("tarjetaContenido");
-  const canvas = await html2canvas(cardEl,{ scale:3, backgroundColor:null }); */
-
-  const cardEl = document.getElementById("tarjetaContenido");
-
-  /* Quitar dorado del título SOLO para el PDF */
-  /*   const titulo = document.getElementById("tituloNavidad");
-  titulo.classList.add("title-pdf-clean");*/
-  
-  const tituloSpan = document.querySelector(".texto-premium");
-  tituloSpan.classList.add("texto-premium-pdf");
-  
-
-  // 🔧 FIX: Forzar ancho grande SOLO para la captura (evita distorsión en celulares)
-  const originalWidth    = cardEl.style.width;
-  const originalMaxWidth = cardEl.style.maxWidth;
-
-  cardEl.style.width = "900px";
-  cardEl.style.maxWidth = "900px";
-  await new Promise(r => setTimeout(r, 60)); // dejar que el navegador reacomode
-
-  // 🔥 OCULTAR EMOJIS SOLO PARA EL PDF
-  document.querySelectorAll(".emoji-img").forEach(e => {
-    e.style.display = "none";
-  });
-
-  // Captura de la tarjeta SIN distorsión
-  const canvas = await html2canvas(cardEl,{
-    scale: 4,
-    backgroundColor: null,
-    useCORS: true
-  });
-
-  // ✔ Restaurar tamaños originales
-  cardEl.style.width = originalWidth;
-  cardEl.style.maxWidth = originalMaxWidth;
-
-  // ✔ RESTAURAR EMOJIS DESPUÉS DEL PDF
-  document.querySelectorAll(".emoji-img").forEach(e => {
-    e.style.display = "";
-  });
-
-
-/*   const canvas = await html2canvas(cardEl,{
-    scale: 4,
-    backgroundColor: null,
-    useCORS: true
-  });
- */
-
 
   const pdf = new jsPDF("p","mm","a4");
   const W = pdf.internal.pageSize.getWidth();
   const H = pdf.internal.pageSize.getHeight();
 
-  /* Fondo guindo + marco dorado */
+  /* === FONDO === */
   pdf.setFillColor(70,10,10);
   pdf.rect(0,0,W,H,"F");
 
+  /* === MARCO DORADO === */
   pdf.setDrawColor(255,215,0);
   pdf.setLineWidth(3);
   pdf.rect(8,8,W-16,H-16);
 
-  /* Título superior tracking */
-  const tituloPDF = "Tarjeta navideña para el Equipo DevOps del BancoSol";
-  /*  pdf.setFont("helvetica", "bold");
-      pdf.setFontSize(18);
-      pdf.setTextColor(255, 255, 255);
-      pdf.text(tituloPDF, W/2, 22, { align: "center" }); */
+  /* === LOGO BANCO SOL === */
+  try {
 
+    const logo = await fetch("logo_bancosol.png").then(r => r.blob());
+    const logoData = await new Promise(resolve => {
+      const reader = new FileReader();
+      reader.onload = () => resolve(reader.result);
+      reader.readAsDataURL(logo);
+    });
 
-  /* Imagen de la tarjeta centrada */
-  const img = canvas.toDataURL("image/png");
-  const maxW = W - 30;
-  const ratio = canvas.width / canvas.height;
-  const imgW = maxW;
-  const imgH = imgW / ratio;
-  const xImg = (W - imgW)/2;
-  const yImg = 32;
-  pdf.addImage(img,"PNG",xImg,yImg,imgW,imgH);
+    const logoW = 48;   // ancho mm
+    const logoH = 24;   // alto mm
+    const logoX = (W - logoW) / 2;
+    const logoY = 20;
 
-  const yBase = yImg + imgH + 14;
+    pdf.addImage(logoData, "PNG", logoX, logoY, logoW, logoH);
 
-  /* Texto "Tarjeta personalizada para:" */
+  } catch (e) {
+    console.error("No se pudo cargar el logo:", e);
+  }
+
+  /* === TITULO CORPORATIVO === */
+  pdf.setFont("times", "bold");
+  pdf.setFontSize(32);
+  pdf.setTextColor(255,215,0);
+  pdf.text("¡Feliz Navidad y Próspero Año Nuevo!", W/2, 60, {align:"center"});
+
+  /* === TEXTO PRINCIPAL === */
+  pdf.setFont("helvetica", "normal");
   pdf.setFontSize(14);
   pdf.setTextColor(255,255,255);
-  pdf.text("Tarjeta personalizada para:",W/2,yBase,{align:"center"});
 
-  /* NOMBRE DORADO BRILLANTE (sin fondo) */
-  const yNombre = yBase + 12;
-  
-  pdf.setFont("helvetica", "bold");
-  pdf.setFontSize(27);
+  let y = 80;
 
-  // Borde blanco (stroke simulado)
+  pdf.text(
+`Gracias equipo por su compromiso, resiliencia y dedicación.
+Cada despliegue, cada pipeline y cada aporte fortaleció a nuestro BancoSol.`,
+    W/2, y,
+    {align:"center"}
+  );
+
+  y += 22;
+
+  pdf.text(
+`Que el 2026 nos encuentre unidos, con nuevos retos,
+grandes logros y un crecimiento profesional aún mayor.`,
+    W/2, y,
+    {align:"center"}
+  );
+
+  /* === FRASE INTERMEDIA === */
+  y += 28;
+  pdf.setFont("helvetica", "italic");
+  pdf.text("Con gratitud por tu entrega y dedicación,", W/2, y, {align:"center"});
+
+  y += 8;
+  pdf.setFont("helvetica", "bolditalic");
+  pdf.text("los líderes del BancoSol.", W/2, y, {align:"center"});
+
+  /* === TEXTO PERSONALIZADO === */
+  y += 32;
+  pdf.setFont("helvetica", "normal");
+  pdf.setFontSize(14);
+  pdf.text("Tarjeta personalizada para:", W/2, y, {align:"center"});
+
+  /* === NOMBRE DORADO PREMIUM === */
+  y += 12;
+  pdf.setFont("helvetica","bold");
+  pdf.setFontSize(28);
+
+  // borde blanco fino
   pdf.setTextColor(255,255,255);
-  for (let dx of [-0.8, 0, 0.8]) {
-    for (let dy of [-0.8, 0, 0.8]) {
-      pdf.text(nombre, W/2 + dx, yNombre + dy, { align:"center" });
-    }
-  }
+  pdf.text(nombre, W/2 - 0.5, y, {align:"center"});
+  pdf.text(nombre, W/2 + 0.5, y, {align:"center"});
+  pdf.text(nombre, W/2, y - 0.5, {align:"center"});
+  pdf.text(nombre, W/2, y + 0.5, {align:"center"});
 
-  // Relleno dorado
+  // relleno dorado
   pdf.setTextColor(255,215,0);
-  pdf.text(nombre, W/2, yNombre, { align:"center" });
+  pdf.text(nombre, W/2, y, {align:"center"});
 
-  
-  /*
-  pdf.setFontSize(22);
-  pdf.setTextColor(255,240,180);
-  pdf.text(nombre,W/2+0.5,yNombre+0.5,{align:"center"});
-  // Cuerpo dorado
-  pdf.setTextColor(255,215,0);
-  pdf.text(nombre,W/2,yNombre,{align:"center"}); */
-
-
-
-  /* Firma */
+  /* === FIRMA === */
+  y += 22;
+  pdf.setFont("helvetica", "normal");
   pdf.setFontSize(12);
   pdf.setTextColor(255,255,255);
-  pdf.text("Con aprecio, Equipo DevOps del BancoSol",W/2,yNombre+14,{align:"center"});
+  pdf.text("Con aprecio, Equipo DevOps del BancoSol", W/2, y, {align:"center"});
 
-  /* QR */
-  let qrImgEl = qrContainer.querySelector("img");
-  if(!qrImgEl){
-    const qrCanvas = qrContainer.querySelector("canvas");
-    if(qrCanvas){
-      qrImgEl = new Image();
-      qrImgEl.src = qrCanvas.toDataURL("image/png");
-    }
-  }
-    /*   if(qrImgEl && qrImgEl.src){
-        const qrData = qrImgEl.src;
-        const qrSize = 30;
-        const qrX = W - qrSize - 14;
-        const qrY = H - qrSize - 18;
-        pdf.addImage(qrData,"PNG",qrX,qrY,qrSize,qrSize);
-      } */
-
-  pdf.save(`TarjetaNavidad_${nombre||"Colaborador"}.pdf`);
-
-  /* Restaurar degradado dorado para la web */
-  tituloSpan.classList.remove("texto-premium-pdf");
-
+  /* === GUARDAR === */
+  pdf.save(`TarjetaNavidad_${nombre}.pdf`);
 }
+
+    
 </script>
 
 <footer>
