@@ -568,7 +568,7 @@ async function downloadPDF() {
   /* === LOGO BANCO SOL === */
   try {
 
-    const logo = await fetch("logo_bancosol.png").then(r => r.blob());
+    const logo = await fetch("logo.png").then(r => r.blob());
     const logoData = await new Promise(resolve => {
       const reader = new FileReader();
       reader.onload = () => resolve(reader.result);
