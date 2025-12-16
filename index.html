@@ -392,26 +392,26 @@ footer{
 
       <h2 id="tituloNavidad" class="titulo-navidad" style="margin-top: 3.2rem;">
         <img src="1f384.svg" class="emoji-img">
-        <span class="texto-premium">¡Feliz Navidad y Próspero Año Nuevo!</span>
+        <span class="texto-premium">¡Feliz Navidad y un Próspero Año Nuevo!</span>
         <img src="1f386.svg" class="emoji-img">
       </h2>
 
       <p style="margin-bottom:1.1rem;font-size:1.45rem;">
-        Gracias equipo por su compromiso, resiliencia y dedicación.
-        Cada despliegue, cada pipeline y cada aporte fortaleció a nuestro BancoSol.
+        Gracias, equipo, por su compromiso, resiliencia y dedicación constante.
+        Cada despliegue, cada pipeline y cada aporte han fortalecido al BancoSol.
       </p>
 
       <p style="margin-bottom:1.2rem;font-size:1.45rem;">
-        Que el 2026 nos encuentre unidos, con nuevos retos, grandes logros
-        y un crecimiento profesional aún mayor.
+        Que el 2026 nos encuentre unidos, con nuevos retos,
+        grandes logros y un desarrollo profesional aún mayor.
       </p>
 
       <p style="font-style:italic;margin-top:2rem;font-size:1.25rem;">
-        Con gratitud por tu entrega y dedicación,
+        Con profunda gratitud por tu entrega y vocación,
       </p>
 
       <p style="font-style:italic;font-size:1.25rem;">
-        <strong>los líderes del BancoSol.</strong>
+        <strong>BancoSol.</strong>
       </p>
 
     </div>
@@ -590,7 +590,7 @@ async function downloadPDF() {
 pdf.setFont("times", "bolditalic");
 pdf.setFontSize(30);
 pdf.setTextColor(255,215,0);
-pdf.text("¡Feliz Navidad y Próspero Año Nuevo!", W/2, 70, { align:"center" });
+pdf.text("¡Feliz Navidad y un Próspero Año Nuevo!", W/2, 70, { align:"center" });
 
   /* === TEXTO PRINCIPAL === */
   pdf.setFont("helvetica", "normal");
@@ -600,8 +600,8 @@ pdf.text("¡Feliz Navidad y Próspero Año Nuevo!", W/2, 70, { align:"center" })
   let y = 80;
 
   pdf.text(
-`Gracias equipo por su compromiso, resiliencia y dedicación.
-Cada despliegue, cada pipeline y cada aporte fortaleció a nuestro BancoSol.`,
+`Gracias, equipo, por su compromiso, resiliencia y dedicación constante.
+Cada despliegue, cada pipeline y cada aporte han fortalecido al BancoSol.`,
     W/2, y,
     {align:"center"}
   );
@@ -610,7 +610,7 @@ Cada despliegue, cada pipeline y cada aporte fortaleció a nuestro BancoSol.`,
 
   pdf.text(
 `Que el 2026 nos encuentre unidos, con nuevos retos,
-grandes logros y un crecimiento profesional aún mayor.`,
+grandes logros y un desarrollo profesional aún mayor.`,
     W/2, y,
     {align:"center"}
   );
@@ -618,11 +618,11 @@ grandes logros y un crecimiento profesional aún mayor.`,
   /* === FRASE INTERMEDIA === */
   y += 28;
   pdf.setFont("helvetica", "italic");
-  pdf.text("Con gratitud por tu entrega y dedicación,", W/2, y, {align:"center"});
+  pdf.text("Con profunda gratitud por tu entrega y vocación,", W/2, y, {align:"center"});
 
   y += 8;
   pdf.setFont("helvetica", "bolditalic");
-  pdf.text("los líderes del BancoSol.", W/2, y, {align:"center"});
+  pdf.text("BancoSol.", W/2, y, {align:"center"});
 
   /* === TEXTO PERSONALIZADO === */
   y += 32;
@@ -656,7 +656,7 @@ grandes logros y un crecimiento profesional aún mayor.`,
   pdf.setFont("helvetica", "normal");
   pdf.setFontSize(12);
   pdf.setTextColor(255,255,255);
-  pdf.text("Con aprecio, Equipo DevOps del BancoSol", W/2, y, {align:"center"});
+  pdf.text("Diciembre 2025", W/2, y, {align:"center"});
 
   /* === GUARDAR === */
   pdf.save(`TarjetaNavidad_${nombre}.pdf`);
